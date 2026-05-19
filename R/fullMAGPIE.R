@@ -357,7 +357,7 @@ fullMAGPIE <- function(rev = numeric_version("0.1"), dev = "") {
   calcOutput("ManureFuelShr",      years = magYears,    round = 4,
              outputStatistics = stats, file = "f55_manure_fuel_shr.cs4")
   calcOutput("AWMSconfShr",        years = magYears,    round = 4,
-             outputStatistics = stats, file = "f55_awms_shr.cs4", rev = rev)
+             outputStatistics = stats, file = "f55_awms_shr.cs4")
   calcOutput("EF3confinement", selection = "recycling", round = 4,
              outputStatistics = stats, file = "f55_awms_recycling_share.cs4")
 
