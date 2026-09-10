@@ -18,6 +18,37 @@
 #' @import countrycode
 #' @importFrom stats complete.cases
 
+# Table 1 of Curtis et al. (2018) is entered by hand (see
+# inst/extdata/ForestLossDrivers/SOURCE.md for the transcription record). These are the
+# identities the printed table satisfies and that a transcription error breaks. They are
+# checked on every read because a wrong cell here is otherwise invisible: it does not
+# fail, it just becomes a wrong forest disturbance rate in MAgPIE.
+checkCurtisTable1 <- function(df) {
+  globalLoss <- 314 # Mha 2001-2015, "Global" row of Table 1
+  drivers <- c("deforestation", "shifting_agriculture", "forestry", "wildfire", "urbanization")
+
+  total <- sum(df$treecoverloss_01_15)
+  if (abs(total - globalLoss) > 2) {
+    stop("ForestLossDrivers: regional tree cover loss sums to ", total, " Mha, but Table 1 of ",
+         "Curtis et al. (2018) reports a global total of ", globalLoss, " Mha. forest_loss.csv is corrupt.")
+  }
+
+  offBy <- abs(rowSums(df[drivers]) - 100)
+  if (any(offBy > 2)) {
+    stop("ForestLossDrivers: driver shares do not sum to 100 per cent for ",
+         toString(df$region[offBy > 2]), " in forest_loss.csv.")
+  }
+
+  implied <- 100 * df$treecoverloss_01_15 / total
+  mismatch <- abs(implied - df$treecoverloss_pc_01_15) > 2
+  if (any(mismatch)) {
+    stop("ForestLossDrivers: absolute and relative tree cover loss disagree for ",
+         toString(df$region[mismatch]), " in forest_loss.csv.")
+  }
+
+  return(invisible(df))
+}
+
 readForestLossDrivers <- function() {
   ## Mapping file
   mapping <- read.csv("mapping.csv", header = TRUE, sep = ";")
@@ -33,6 +64,7 @@ readForestLossDrivers <- function() {
   file <- "forest_loss.csv"
   # This is Tree Cover loss in Mha at this stage, all drivers are in percentage
   df <- read.csv(file = file, header = TRUE, sep = ",")
+  checkCurtisTable1(df)
   # Division by 100 because we change from percentage to proportion. Division by 15 to get annual data
   df[, -c(1:3)] <- (df$treecoverloss_01_15 * (df[, -c(1:3)] / 100)) / 15
 
