@@ -174,25 +174,25 @@ Saint Vincent and the Grenadines;VCT;Latin America
 Venezuela, Bolivarian Republic of;VEN;Latin America
 Virgin Islands, British;VGB;Latin America
 Virgin Islands, U.S.;VIR;Latin America
-United Arab Emirates;ARE;Latin America
-Bahrain;BHR;Latin America
-Algeria;DZA;Latin America
-Egypt;EGY;Latin America
-Iran, Islamic Republic of;IRN;Latin America
-Iraq;IRQ;Latin America
-Israel;ISR;Latin America
-Jordan;JOR;Latin America
-Kuwait;KWT;Latin America
-Lebanon;LBN;Latin America
-Libya;LBY;Latin America
-Morocco;MAR;Latin America
-Oman;OMN;Latin America
-Palestine, State of;PSE;Latin America
-Qatar;QAT;Latin America
-Saudi Arabia;SAU;Latin America
-Syrian Arab Republic;SYR;Latin America
-Tunisia;TUN;Latin America
-Yemen;YEM;Latin America
+United Arab Emirates;ARE;Russia China South Asia
+Bahrain;BHR;Russia China South Asia
+Algeria;DZA;Africa
+Egypt;EGY;Africa
+Iran, Islamic Republic of;IRN;Russia China South Asia
+Iraq;IRQ;Russia China South Asia
+Israel;ISR;Russia China South Asia
+Jordan;JOR;Russia China South Asia
+Kuwait;KWT;Russia China South Asia
+Lebanon;LBN;Russia China South Asia
+Libya;LBY;Africa
+Morocco;MAR;Africa
+Oman;OMN;Russia China South Asia
+Palestine, State of;PSE;Russia China South Asia
+Qatar;QAT;Russia China South Asia
+Saudi Arabia;SAU;Russia China South Asia
+Syrian Arab Republic;SYR;Russia China South Asia
+Tunisia;TUN;Africa
+Yemen;YEM;Russia China South Asia
 Bermuda;BMU;North America
 Canada;CAN;North America
 Puerto Rico;PRI;North America
@@ -247,4 +247,4 @@ Maldives;MDV;Russia China South Asia
 Myanmar;MMR;Russia China South Asia
 Nepal;NPL;Russia China South Asia
 Pakistan;PAK;Russia China South Asia
-Reunion;REU;Russia China South Asia
+Reunion;REU;Africa
