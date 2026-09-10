@@ -4,25 +4,41 @@
 \alias{calcForestFireLoss}
 \title{calcForestFireLoss}
 \usage{
-calcForestFireLoss()
+calcForestFireLoss(source = "GFW", period = 2015:2024)
+}
+\arguments{
+\item{source}{Driver data to use. `"GFW"` (default) is the WRI/Google DeepMind 1 km
+dominant-driver product of Sims et al. (2025), crossed with UMD/Hansen annual tree
+cover loss per country - see [readGFWLossByDriver()]. `"Curtis"` is the hand-transcribed
+Table 1 of Curtis et al. (2018), seven regions spread over countries by FRA forest area;
+it is kept so that earlier input revisions stay regenerable, and reproduces the previous
+behaviour of this function exactly.}
+
+\item{period}{Years averaged to give the annual rate, for `source = "GFW"` only. The
+default 2015:2024 is the most recent complete decade in the GFW record. The Curtis
+source carries a single 2001-2015 mean and ignores this argument.}
 }
 \value{
-MAgPIE object with FRA 2020 forest fire area loss
+MAgPIE object with forest area lost per year by driver, Mha
 }
 \description{
-Calculate how much loss of forest area happens due to fire disturbances based on FRA 2020 data
+Assembles annual forest area loss by driver, in Mha per year, from one of
+two driver sources, with the FAO FRA 2020 fire column bound on as `overall`.
+}
+\details{
+The `overall` column is the FRA 2020 fire series averaged over its own years,
+2000-2017, not over `period` - the two records barely overlap. That is the behaviour this
+function has always had, and `overall` is loaded but never read on the GAMS side.
 }
 \examples{
-
-\dontrun{ 
-calcOutput("ForestFireLoss",aggregate=FALSE)
+\dontrun{
+calcOutput("ForestFireLoss", aggregate = FALSE)
+calcOutput("ForestFireLoss", source = "Curtis", aggregate = FALSE)
 }
-
-
 }
 \seealso{
-\code{\link[mrfaocore]{readFRA2020}}
+[readGFWLossByDriver()], [readForestLossDrivers()]
 }
 \author{
-Abhijeet Mishra
+Abhijeet Mishra, Michael Crawford
 }

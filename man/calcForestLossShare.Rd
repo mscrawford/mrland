@@ -4,25 +4,39 @@
 \alias{calcForestLossShare}
 \title{calcForestLossShare}
 \usage{
-calcForestLossShare()
+calcForestLossShare(source = "GFW", period = 2015:2024)
+}
+\arguments{
+\item{source}{Driver data to use, `"GFW"` (default) or `"Curtis"`. See
+[calcForestFireLoss()].}
+
+\item{period}{Years averaged to give the annual rate, for `source = "GFW"` only.}
 }
 \value{
-MAgPIE object with share of area lost in forests due to different drivers
+MAgPIE object with the share of natural forest area lost per year by driver
 }
 \description{
-Calculates which share of forest land is lost due to different drivers
+Calculates which share of natural forest area is lost per year to each
+driver of forest loss.
+}
+\details{
+The numerator is UMD tree cover loss (or, for Curtis, tree cover loss
+transcribed from the paper) and the denominator is FRA 2020 naturally regenerating
+forest area in 2010. Those two are not the same quantity: tree cover is not forest, and
+loss detected in tree cover outside natural forest still lands in the numerator. The
+mismatch is inherited from the original parameterisation and is left in place here on
+purpose, so that switching the driver source moves the numbers for one reason only.
+Changing the denominator is a separate decision.
 }
 \examples{
-
-\dontrun{ 
-calcOutput("ForestLossShare",aggregate=FALSE)
+\dontrun{
+calcOutput("ForestLossShare", aggregate = FALSE)
+calcOutput("ForestLossShare", source = "Curtis", aggregate = FALSE)
 }
-
-
 }
 \seealso{
-\code{\link{readForestLossDrivers}}
+[calcForestFireLoss()]
 }
 \author{
-Abhijeet Mishra
+Abhijeet Mishra, Michael Crawford
 }
