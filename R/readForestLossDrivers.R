@@ -1,28 +1,6 @@
-#' Read ForestLossDrivers
-#'
-#' Read-in an Forest loss data (range 2001-2015 but only single annual number her)
-#' (Source:DOI: 10.1126/science.aau3445 Table 1).
-#'
-#'
-#' @return magpie object of the Curtis et al., 2018 Data
-#' @author Abhijeet Mishra
-#' @seealso \code{\link[madrat]{readSource}}
-#' @examples
-#' \dontrun{
-#' a <- readSource("ForestLossDrivers")
-#' }
-#'
-#' @importFrom magclass as.magpie
-#' @importFrom madrat toolSubtypeSelect
-#' @import readxl
-#' @import countrycode
-#' @importFrom stats complete.cases
-
-# Table 1 of Curtis et al. (2018) is entered by hand (see
-# inst/extdata/ForestLossDrivers/SOURCE.md for the transcription record). These are the
-# identities the printed table satisfies and that a transcription error breaks. They are
-# checked on every read because a wrong cell here is otherwise invisible: it does not
-# fail, it just becomes a wrong forest disturbance rate in MAgPIE.
+# Table 1 of Curtis et al. (2018) is hand-typed (inst/extdata/ForestLossDrivers/SOURCE.md).
+# These identities of the printed table are checked on every read; a wrong cell does not
+# fail otherwise, it becomes a wrong disturbance rate.
 checkCurtisTable1 <- function(df) {
   globalLoss <- 314 # Mha 2001-2015, "Global" row of Table 1
   drivers <- c("deforestation", "shifting_agriculture", "forestry", "wildfire", "urbanization")
@@ -48,6 +26,26 @@ checkCurtisTable1 <- function(df) {
 
   return(invisible(df))
 }
+
+#' Read ForestLossDrivers
+#'
+#' Read-in an Forest loss data (range 2001-2015 but only single annual number her)
+#' (Source:DOI: 10.1126/science.aau3445 Table 1).
+#'
+#'
+#' @return magpie object of the Curtis et al., 2018 Data
+#' @author Abhijeet Mishra
+#' @seealso \code{\link[madrat]{readSource}}
+#' @examples
+#' \dontrun{
+#' a <- readSource("ForestLossDrivers")
+#' }
+#'
+#' @importFrom magclass as.magpie
+#' @importFrom madrat toolSubtypeSelect
+#' @import readxl
+#' @import countrycode
+#' @importFrom stats complete.cases
 
 readForestLossDrivers <- function() {
   ## Mapping file

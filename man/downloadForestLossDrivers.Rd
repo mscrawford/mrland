@@ -10,17 +10,28 @@ downloadForestLossDrivers()
 Provisions the ForestLossDrivers source: the regional tree cover loss
 totals and driver shares of Curtis et al. (2018), Table 1, plus the country to
 source-region mapping used to disaggregate them.
-}
-\details{
+
 Table 1 is published only inside the article; there is no machine-readable release of
 it. The table is therefore held as version-controlled package data under
-\code{inst/extdata/ForestLossDrivers} and staged into the madrat source folder here, so
-that \code{readSource("ForestLossDrivers")} works on a machine that has never seen the
+`inst/extdata/ForestLossDrivers` and staged into the madrat source folder here, so
+that `readSource("ForestLossDrivers")` works on a machine that has never seen the
 shared source directory, and so that any change to the numbers is a reviewable diff
-rather than a silent edit of a shared file.
+rather than a silent edit of a shared file. The transcription record, including the
+known deviations from the printed table, is in
+`inst/extdata/ForestLossDrivers/SOURCE.md`.
+
+The underlying gridded product - the 10 km dominant-driver classification - is
+distributed separately by Global Forest Watch under CC BY 4.0 as a tiled raster set
+(`tsc_tree_cover_loss_drivers`). It is deliberately not fetched here: deriving the
+regional totals from the raster would be a change of method, not a change of source.
+}
+\examples{
+\dontrun{
+madrat::downloadSource("ForestLossDrivers")
+}
 }
 \seealso{
-\code{\link[=readForestLossDrivers]{readForestLossDrivers()}}
+[readForestLossDrivers()]
 }
 \author{
 Michael Crawford
