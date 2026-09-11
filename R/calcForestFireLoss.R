@@ -1,20 +1,39 @@
-# The only driver classes that belong in f35_forest_lost_share. The parameter is not a
+# The only driver class that belongs in f35_forest_lost_share. The parameter is not a
 # deforestation rate: module 35 moves the "lost" area out of mature secondary-forest age
 # classes and out of primary forest and straight back into the youngest age classes
 # (35_natveg/pot_forest_may24/presolve.gms), so total forest area is conserved and only the
-# age structure resets. A class therefore qualifies only if it (a) leaves the land as forest
-# and (b) is not something MAgPIE already decides for itself:
+# age structure resets. The flux it generates is nevertheless booked as anthropogenic
+# land-use-change CO2 (52_carbon/normal_dec17/equations.gms) and is priced under a land
+# carbon policy. A class therefore qualifies only if it (a) leaves the land as forest,
+# (b) is not something MAgPIE already decides for itself, and (c) is a land-use process
+# rather than a natural one.
 #
-#   permanent agriculture       - permanent conversion, and endogenous via vm_lu_transitions
-#   hard commodities            - permanent conversion (mining)
-#   logging                     - regrowth, but endogenous via v35_hvarea_* and module 73
-#   settlements & infrastructure- permanent conversion, and module 34 sets the urban pool
-#   unknown                     - unattributable
-#
-# Those five are the observational counterpart to quantities the model solves for, and are
+# Failing (b) - the observational counterpart to quantities the model solves for. These are
 # published through mrvalidation::calcValidTreeCoverLoss() instead, where they benchmark the
-# model rather than parameterise it. Feeding them in here would double count.
-gfwModelDrivers <- c("shifting_cultivation", "wildfire", "other_natural_disturbances")
+# model rather than parameterise it; feeding them in here would double count:
+#
+#   permanent agriculture        - permanent conversion, endogenous via vm_lu_transitions
+#   hard commodities             - permanent conversion (mining)
+#   logging                      - regrowth, but endogenous via v35_hvarea_* and module 73
+#   settlements & infrastructure - permanent conversion, and module 34 sets the urban pool
+#   unknown                      - unattributable
+#
+# Failing (c) - natural disturbance. Wildfire and other natural disturbances pass (a) and
+# (b) and were carried here until 2026-09-11. They come out because the flux they generate
+# is labelled land-use change in the emission tree and large deforestation fires in
+# magpie4::reportFireEmissions. Lightning fire in boreal Russia is neither. Wildfire carries
+# a second, independent objection: the LPJmL run behind MAgPIE's natural-vegetation carbon
+# densities had fire enabled, so its effect on the forest carbon stock is already in the
+# asymptote and would be represented twice.
+#
+#   wildfire                     - 8.66 Mha/yr, 72% boreal; also inside the LPJmL densities
+#   other natural disturbances   - 0.45 Mha/yr (insects, windthrow)
+#
+# (Measured 2026-09-11 from this function at the commit before they were dropped, against
+# 3.17 Mha/yr for shifting cultivation.) Making either operative needs an accounting label
+# outside the land-use-change tree first, and wildfire additionally needs the stock double
+# count resolved. Both remain available through calcValidTreeCoverLoss().
+gfwModelDrivers <- c("shifting_cultivation")
 
 #' @title calcForestFireLoss
 #'
@@ -31,9 +50,10 @@ gfwModelDrivers <- c("shifting_cultivation", "wildfire", "other_natural_disturba
 #' default 2015:2024 is the most recent complete decade in the GFW record. The Curtis
 #' source carries a single 2001-2015 mean and ignores this argument.
 #'
-#' @details For `source = "GFW"` only the three driver classes that MAgPIE does not
-#' model endogenously are returned - see `gfwModelDrivers` at the top of this file for
-#' which, and why the others are routed to mrvalidation instead.
+#' @details For `source = "GFW"` only `shifting_cultivation` is returned, the one driver
+#' class that leaves the land as forest, is not decided endogenously by MAgPIE, and is a
+#' land-use rather than a natural process - see `gfwModelDrivers` at the top of this file
+#' for the other seven and why each is routed to mrvalidation instead.
 #'
 #' The `overall` column is the FRA 2020 fire series averaged over its own years,
 #' 2000-2017, not over `period` - the two records barely overlap. That is the behaviour this

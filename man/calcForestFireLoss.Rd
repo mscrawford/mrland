@@ -26,9 +26,10 @@ Assembles annual forest area loss by driver, in Mha per year, from one of
 two driver sources, with the FAO FRA 2020 fire column bound on as `overall`.
 }
 \details{
-For `source = "GFW"` only the three driver classes that MAgPIE does not
-model endogenously are returned - see `gfwModelDrivers` at the top of this file for
-which, and why the others are routed to mrvalidation instead.
+For `source = "GFW"` only `shifting_cultivation` is returned, the one driver
+class that leaves the land as forest, is not decided endogenously by MAgPIE, and is a
+land-use rather than a natural process - see `gfwModelDrivers` at the top of this file
+for the other seven and why each is routed to mrvalidation instead.
 
 The `overall` column is the FRA 2020 fire series averaged over its own years,
 2000-2017, not over `period` - the two records barely overlap. That is the behaviour this
