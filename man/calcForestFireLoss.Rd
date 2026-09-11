@@ -7,32 +7,24 @@
 calcForestFireLoss(source = "GFW", period = 2015:2024)
 }
 \arguments{
-\item{source}{Driver data to use. `"GFW"` (default) is the WRI/Google DeepMind 1 km
-dominant-driver product of Sims et al. (2025), crossed with UMD/Hansen annual tree
-cover loss per country - see [readGFWLossByDriver()]. `"Curtis"` is the hand-transcribed
-Table 1 of Curtis et al. (2018), seven regions spread over countries by FRA forest area;
-it is kept so that earlier input revisions stay regenerable, and reproduces the previous
-behaviour of this function exactly.}
+\item{source}{`"GFW"` (default) or `"Curtis"`. Curtis reproduces the previous behaviour of
+this function exactly and keeps earlier input revisions regenerable.}
 
-\item{period}{Years averaged to give the annual rate, for `source = "GFW"` only. The
-default 2015:2024 is the most recent complete decade in the GFW record. The Curtis
-source carries a single 2001-2015 mean and ignores this argument.}
+\item{period}{Years averaged into the annual rate, GFW only (default 2015:2024). Curtis
+carries a single 2001-2015 mean.}
 }
 \value{
 MAgPIE object with forest area lost per year by driver, Mha
 }
 \description{
-Assembles annual forest area loss by driver, in Mha per year, from one of
-two driver sources, with the FAO FRA 2020 fire column bound on as `overall`.
+Annual forest area loss by driver, Mha per year, from the Sims et al. (2025)
+driver product (`source = "GFW"`, default) or the Curtis et al. (2018) table
+(`source = "Curtis"`), with the FRA 2020 fire series bound on as `overall`.
 }
 \details{
-For `source = "GFW"` only the three driver classes that MAgPIE does not
-model endogenously are returned - see `gfwModelDrivers` at the top of this file for
-which, and why the others are routed to mrvalidation instead.
-
-The `overall` column is the FRA 2020 fire series averaged over its own years,
-2000-2017, not over `period` - the two records barely overlap. That is the behaviour this
-function has always had, and `overall` is loaded but never read on the GAMS side.
+For GFW only the classes in `gfwModelDrivers` are returned. `overall` is the FRA
+fire series averaged over its own years (2000-2017), as before; GAMS loads it but never
+reads it.
 }
 \examples{
 \dontrun{
