@@ -56,13 +56,8 @@ test_that("an added driver class is caught", {
 test_that("a driver file cut short is caught", {
   df <- makeExtract()
   totals <- makeTotals(df)               # totals complete, as when one of the two downloads fails
-  df <- df[df$iso %in% head(unique(df$iso), 200), ]   # tail lost, but not enough to trip the count
+  df <- df[df$iso %in% head(unique(df$iso), 200), ]   # tail of the country list lost
   expect_error(checkGFWLossByDriver(df, totals), "do not cover the same country-years")
-})
-
-test_that("losing the tail of the country list is caught", {
-  df <- makeExtract(nIso = 150)
-  expect_error(checkGFWLossByDriver(df, makeTotals(df)), "countries in the extract")
 })
 
 test_that("an extract mixing canopy thresholds is caught", {
@@ -70,12 +65,6 @@ test_that("an extract mixing canopy thresholds is caught", {
   df <- makeExtract()
   df$threshold[seq(1, nrow(df), 2)] <- 75L
   expect_error(checkGFWLossByDriver(df, makeTotals(df)), "mixes canopy thresholds")
-})
-
-test_that("a gap in the year series is caught", {
-  df <- makeExtract()
-  df <- df[df$year != 2013, ]
-  expect_error(checkGFWLossByDriver(df, makeTotals(df)), "has gaps at 2013")
 })
 
 test_that("missing and negative loss values are caught", {

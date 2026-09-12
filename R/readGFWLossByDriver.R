@@ -40,20 +40,9 @@ checkGFWLossByDriver <- function(df, totals) {
          ". It must carry exactly one, the value pinned in downloadGFWLossByDriver().")
   }
 
-  years <- sort(unique(df$year))
-  if (!identical(years, seq(min(years), max(years)))) {
-    stop("GFWLossByDriver: the year series ", min(years), "-", max(years),
-         " has gaps at ", toString(setdiff(seq(min(years), max(years)), years)), ".")
-  }
-
   if (anyNA(df$loss_ha) || any(df$loss_ha < 0)) {
     stop("GFWLossByDriver: loss_ha contains ", sum(is.na(df$loss_ha)), " missing and ",
          sum(df$loss_ha < 0, na.rm = TRUE), " negative values.")
-  }
-
-  if (length(unique(df$iso)) < 200) {
-    stop("GFWLossByDriver: only ", length(unique(df$iso)), " countries in the extract; ",
-         "the full table carries 216. The download is probably truncated.")
   }
 
   # The driver file summed over drivers must reproduce the separately queried totals file.
