@@ -67,8 +67,9 @@ makes the error unambiguous.
 ## Mapping
 
 `mapping.csv` assigns each ISO3 country to one of the seven Curtis source regions. It was
-built from `madrat::regionmappingH12` (identical country set, 249 rows, same `;`-delimited
-`X;CountryCode;RegionCode` layout) by rewriting the region column, and it carries at least
+built from `madrat::regionmappingH12` (identical country set, 249 rows, the same
+`X;CountryCode;RegionCode` layout; this copy is comma-separated since mrland 0.76.0, the
+H12 file and the shared source folder's original are `;`-delimited) by rewriting the region column, and it carries at least
 one artefact of that edit: the whole MEA block (ARE, BHR, DZA, EGY, IRN, IRQ, ISR, JOR,
 KWT, LBN, LBY, MAR, OMN, PSE, QAT, SAU, SYR, TUN, YEM) is assigned to `Latin America`.
 See the repository history for whether that has been corrected; the affected countries

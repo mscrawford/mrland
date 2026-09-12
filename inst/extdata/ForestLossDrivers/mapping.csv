@@ -1,250 +1,250 @@
-X;CountryCode;RegionCode
-Angola;AGO;Africa
-French Southern Territories;ATF;Africa
-Burundi;BDI;Africa
-Benin;BEN;Africa
-Burkina Faso;BFA;Africa
-Bouvet Island;BVT;Africa
-Botswana;BWA;Africa
-Central African Republic;CAF;Africa
-Cote d Ivoire;CIV;Africa
-Cameroon;CMR;Africa
-Congo, the Democratic Republic of the;COD;Africa
-Congo;COG;Africa
-Comoros;COM;Africa
-Cape Verde;CPV;Africa
-Djibouti;DJI;Africa
-Eritrea;ERI;Africa
-Western Sahara;ESH;Africa
-Ethiopia;ETH;Africa
-Gabon;GAB;Africa
-Ghana;GHA;Africa
-Guinea;GIN;Africa
-Gambia;GMB;Africa
-Guinea-Bissau;GNB;Africa
-Equatorial Guinea;GNQ;Africa
-Kenya;KEN;Africa
-Liberia;LBR;Africa
-Lesotho;LSO;Africa
-Madagascar;MDG;Africa
-Mali;MLI;Africa
-Mozambique;MOZ;Africa
-Mauritania;MRT;Africa
-Mauritius;MUS;Africa
-Malawi;MWI;Africa
-Mayotte;MYT;Africa
-Namibia;NAM;Africa
-Niger;NER;Africa
-Nigeria;NGA;Africa
-Rwanda;RWA;Africa
-Sudan;SDN;Africa
-Senegal;SEN;Africa
-Saint Helena, Ascension and Tristan da Cunha;SHN;Africa
-Sierra Leone;SLE;Africa
-Somalia;SOM;Africa
-South Sudan;SSD;Africa
-Sao Tome and Principe;STP;Africa
-Swaziland;SWZ;Africa
-Seychelles;SYC;Africa
-Chad;TCD;Africa
-Togo;TGO;Africa
-Tanzania, United Republic of;TZA;Africa
-Uganda;UGA;Africa
-South Africa;ZAF;Africa
-Zambia;ZMB;Africa
-Zimbabwe;ZWE;Africa
-China;CHN;Russia China South Asia
-Hong Kong;HKG;Russia China South Asia
-Cambodia;KHM;Russia China South Asia
-Lao People's Democratic Republic;LAO;Russia China South Asia
-Macao;MAC;Russia China South Asia
-Mongolia;MNG;Russia China South Asia
-Taiwan, Province of China;TWN;Russia China South Asia
-Viet Nam;VNM;Russia China South Asia
-Aland Islands;ALA;Europe
-Albania;ALB;Europe
-Andorra;AND;Europe
-Austria;AUT;Europe
-Belgium;BEL;Europe
-Bulgaria;BGR;Europe
-Bosnia and Herzegovina;BIH;Europe
-Switzerland;CHE;Europe
-Cyprus;CYP;Europe
-Czech Republic;CZE;Europe
-Germany;DEU;Europe
-Denmark;DNK;Europe
-Spain;ESP;Europe
-Estonia;EST;Europe
-Finland;FIN;Europe
-France;FRA;Europe
-Faroe Islands;FRO;Europe
-United Kingdom;GBR;Europe
-Guernsey;GGY;Europe
-Gibraltar;GIB;Europe
-Greece;GRC;Europe
-Greenland;GRL;Europe
-Croatia;HRV;Europe
-Hungary;HUN;Europe
-Isle of Man;IMN;Europe
-Ireland;IRL;Europe
-Iceland;ISL;Europe
-Italy;ITA;Europe
-Jersey;JEY;Europe
-Liechtenstein;LIE;Europe
-Lithuania;LTU;Europe
-Luxembourg;LUX;Europe
-Latvia;LVA;Europe
-Monaco;MCO;Europe
-Macedonia, the former Yugoslav Republic of;MKD;Europe
-Malta;MLT;Europe
-Montenegro;MNE;Europe
-Netherlands;NLD;Europe
-Norway;NOR;Europe
-Poland;POL;Europe
-Portugal;PRT;Europe
-Romania;ROU;Europe
-Svalbard and Jan Mayen;SJM;Europe
-San Marino;SMR;Europe
-Serbia;SRB;Europe
-Slovakia;SVK;Europe
-Slovenia;SVN;Europe
-Sweden;SWE;Europe
-Turkey;TUR;Europe
-Holy See (Vatican City State);VAT;Europe
-Armenia;ARM;Russia China South Asia
-Azerbaijan;AZE;Russia China South Asia
-Belarus;BLR;Russia China South Asia
-Georgia;GEO;Russia China South Asia
-Kazakhstan;KAZ;Russia China South Asia
-Kyrgyzstan;KGZ;Russia China South Asia
-Moldova, Republic of;MDA;Russia China South Asia
-Russian Federation;RUS;Russia China South Asia
-Tajikistan;TJK;Russia China South Asia
-Turkmenistan;TKM;Russia China South Asia
-Ukraine;UKR;Russia China South Asia
-Uzbekistan;UZB;Russia China South Asia
-Aruba;ABW;Latin America
-Anguilla;AIA;Latin America
-Argentina;ARG;Latin America
-Antarctica;ATA;Latin America
-Antigua and Barbuda;ATG;Latin America
-Bonaire, Sint Eustatius and Saba;BES;Latin America
-Bahamas;BHS;Latin America
-Saint Barthelemy;BLM;Latin America
-Belize;BLZ;Latin America
-Bolivia, Plurinational State of;BOL;Latin America
-Brazil;BRA;Latin America
-Barbados;BRB;Latin America
-Chile;CHL;Latin America
-Colombia;COL;Latin America
-Costa Rica;CRI;Latin America
-Cuba;CUB;Latin America
-Curacao;CUW;Latin America
-Cayman Islands;CYM;Latin America
-Dominica;DMA;Latin America
-Dominican Republic;DOM;Latin America
-Ecuador;ECU;Latin America
-Falkland Islands (Malvinas);FLK;Latin America
-Guadeloupe;GLP;Latin America
-Grenada;GRD;Latin America
-Guatemala;GTM;Latin America
-French Guiana;GUF;Latin America
-Guyana;GUY;Latin America
-Honduras;HND;Latin America
-Haiti;HTI;Latin America
-Jamaica;JAM;Latin America
-Saint Kitts and Nevis;KNA;Latin America
-Saint Lucia;LCA;Latin America
-Saint Martin (French part);MAF;Latin America
-Mexico;MEX;North America
-Montserrat;MSR;Latin America
-Martinique;MTQ;Latin America
-Nicaragua;NIC;Latin America
-Panama;PAN;Latin America
-Peru;PER;Latin America
-Paraguay;PRY;Latin America
-South Georgia and the South Sandwich Islands;SGS;Latin America
-El Salvador;SLV;Latin America
-Suriname;SUR;Latin America
-Sint Maarten (Dutch part);SXM;Latin America
-Turks and Caicos Islands;TCA;Latin America
-Trinidad and Tobago;TTO;Latin America
-Uruguay;URY;Latin America
-Saint Vincent and the Grenadines;VCT;Latin America
-Venezuela, Bolivarian Republic of;VEN;Latin America
-Virgin Islands, British;VGB;Latin America
-Virgin Islands, U.S.;VIR;Latin America
-United Arab Emirates;ARE;Russia China South Asia
-Bahrain;BHR;Russia China South Asia
-Algeria;DZA;Africa
-Egypt;EGY;Africa
-Iran, Islamic Republic of;IRN;Russia China South Asia
-Iraq;IRQ;Russia China South Asia
-Israel;ISR;Russia China South Asia
-Jordan;JOR;Russia China South Asia
-Kuwait;KWT;Russia China South Asia
-Lebanon;LBN;Russia China South Asia
-Libya;LBY;Africa
-Morocco;MAR;Africa
-Oman;OMN;Russia China South Asia
-Palestine, State of;PSE;Russia China South Asia
-Qatar;QAT;Russia China South Asia
-Saudi Arabia;SAU;Russia China South Asia
-Syrian Arab Republic;SYR;Russia China South Asia
-Tunisia;TUN;Africa
-Yemen;YEM;Russia China South Asia
-Bermuda;BMU;North America
-Canada;CAN;North America
-Puerto Rico;PRI;North America
-Saint Pierre and Miquelon;SPM;North America
-United States Minor Outlying Islands;UMI;North America
-United States;USA;North America
-American Samoa;ASM;Australia Oceania
-Australia;AUS;Australia Oceania
-Cocos (Keeling) Islands;CCK;Australia Oceania
-Cook Islands;COK;Australia Oceania
-Christmas Island;CXR;Australia Oceania
-Heard Island and McDonald Islands;HMD;Australia Oceania
-Japan;JPN;Australia Oceania
-Norfolk Island;NFK;Australia Oceania
-Niue;NIU;Australia Oceania
-New Zealand;NZL;Australia Oceania
-French Polynesia;PYF;Australia Oceania
-Tokelau;TKL;Australia Oceania
-Brunei Darussalam;BRN;Southeast Asia
-Fiji;FJI;Southeast Asia
-Micronesia, Federated States of;FSM;Southeast Asia
-Guam;GUM;Southeast Asia
-Indonesia;IDN;Southeast Asia
-Kiribati;KIR;Southeast Asia
-Korea, Republic of;KOR;Southeast Asia
-Marshall Islands;MHL;Southeast Asia
-Northern Mariana Islands;MNP;Southeast Asia
-Malaysia;MYS;Southeast Asia
-New Caledonia;NCL;Southeast Asia
-Nauru;NRU;Southeast Asia
-Pitcairn;PCN;Southeast Asia
-Philippines;PHL;Southeast Asia
-Palau;PLW;Southeast Asia
-Papua New Guinea;PNG;Southeast Asia
-Korea, Democratic People's Republic of;PRK;Southeast Asia
-Singapore;SGP;Southeast Asia
-Solomon Islands;SLB;Southeast Asia
-Thailand;THA;Southeast Asia
-Timor-Leste;TLS;Southeast Asia
-Tonga;TON;Southeast Asia
-Tuvalu;TUV;Southeast Asia
-Vanuatu;VUT;Southeast Asia
-Wallis and Futuna;WLF;Southeast Asia
-Samoa;WSM;Southeast Asia
-Afghanistan;AFG;Russia China South Asia
-Bangladesh;BGD;Russia China South Asia
-Bhutan;BTN;Russia China South Asia
-India;IND;Russia China South Asia
-British Indian Ocean Territory;IOT;Russia China South Asia
-Sri Lanka;LKA;Russia China South Asia
-Maldives;MDV;Russia China South Asia
-Myanmar;MMR;Russia China South Asia
-Nepal;NPL;Russia China South Asia
-Pakistan;PAK;Russia China South Asia
-Reunion;REU;Africa
+X,CountryCode,RegionCode
+Angola,AGO,Africa
+French Southern Territories,ATF,Africa
+Burundi,BDI,Africa
+Benin,BEN,Africa
+Burkina Faso,BFA,Africa
+Bouvet Island,BVT,Africa
+Botswana,BWA,Africa
+Central African Republic,CAF,Africa
+Cote d Ivoire,CIV,Africa
+Cameroon,CMR,Africa
+"Congo, the Democratic Republic of the",COD,Africa
+Congo,COG,Africa
+Comoros,COM,Africa
+Cape Verde,CPV,Africa
+Djibouti,DJI,Africa
+Eritrea,ERI,Africa
+Western Sahara,ESH,Africa
+Ethiopia,ETH,Africa
+Gabon,GAB,Africa
+Ghana,GHA,Africa
+Guinea,GIN,Africa
+Gambia,GMB,Africa
+Guinea-Bissau,GNB,Africa
+Equatorial Guinea,GNQ,Africa
+Kenya,KEN,Africa
+Liberia,LBR,Africa
+Lesotho,LSO,Africa
+Madagascar,MDG,Africa
+Mali,MLI,Africa
+Mozambique,MOZ,Africa
+Mauritania,MRT,Africa
+Mauritius,MUS,Africa
+Malawi,MWI,Africa
+Mayotte,MYT,Africa
+Namibia,NAM,Africa
+Niger,NER,Africa
+Nigeria,NGA,Africa
+Rwanda,RWA,Africa
+Sudan,SDN,Africa
+Senegal,SEN,Africa
+"Saint Helena, Ascension and Tristan da Cunha",SHN,Africa
+Sierra Leone,SLE,Africa
+Somalia,SOM,Africa
+South Sudan,SSD,Africa
+Sao Tome and Principe,STP,Africa
+Swaziland,SWZ,Africa
+Seychelles,SYC,Africa
+Chad,TCD,Africa
+Togo,TGO,Africa
+"Tanzania, United Republic of",TZA,Africa
+Uganda,UGA,Africa
+South Africa,ZAF,Africa
+Zambia,ZMB,Africa
+Zimbabwe,ZWE,Africa
+China,CHN,Russia China South Asia
+Hong Kong,HKG,Russia China South Asia
+Cambodia,KHM,Russia China South Asia
+Lao People's Democratic Republic,LAO,Russia China South Asia
+Macao,MAC,Russia China South Asia
+Mongolia,MNG,Russia China South Asia
+"Taiwan, Province of China",TWN,Russia China South Asia
+Viet Nam,VNM,Russia China South Asia
+Aland Islands,ALA,Europe
+Albania,ALB,Europe
+Andorra,AND,Europe
+Austria,AUT,Europe
+Belgium,BEL,Europe
+Bulgaria,BGR,Europe
+Bosnia and Herzegovina,BIH,Europe
+Switzerland,CHE,Europe
+Cyprus,CYP,Europe
+Czech Republic,CZE,Europe
+Germany,DEU,Europe
+Denmark,DNK,Europe
+Spain,ESP,Europe
+Estonia,EST,Europe
+Finland,FIN,Europe
+France,FRA,Europe
+Faroe Islands,FRO,Europe
+United Kingdom,GBR,Europe
+Guernsey,GGY,Europe
+Gibraltar,GIB,Europe
+Greece,GRC,Europe
+Greenland,GRL,Europe
+Croatia,HRV,Europe
+Hungary,HUN,Europe
+Isle of Man,IMN,Europe
+Ireland,IRL,Europe
+Iceland,ISL,Europe
+Italy,ITA,Europe
+Jersey,JEY,Europe
+Liechtenstein,LIE,Europe
+Lithuania,LTU,Europe
+Luxembourg,LUX,Europe
+Latvia,LVA,Europe
+Monaco,MCO,Europe
+"Macedonia, the former Yugoslav Republic of",MKD,Europe
+Malta,MLT,Europe
+Montenegro,MNE,Europe
+Netherlands,NLD,Europe
+Norway,NOR,Europe
+Poland,POL,Europe
+Portugal,PRT,Europe
+Romania,ROU,Europe
+Svalbard and Jan Mayen,SJM,Europe
+San Marino,SMR,Europe
+Serbia,SRB,Europe
+Slovakia,SVK,Europe
+Slovenia,SVN,Europe
+Sweden,SWE,Europe
+Turkey,TUR,Europe
+Holy See (Vatican City State),VAT,Europe
+Armenia,ARM,Russia China South Asia
+Azerbaijan,AZE,Russia China South Asia
+Belarus,BLR,Russia China South Asia
+Georgia,GEO,Russia China South Asia
+Kazakhstan,KAZ,Russia China South Asia
+Kyrgyzstan,KGZ,Russia China South Asia
+"Moldova, Republic of",MDA,Russia China South Asia
+Russian Federation,RUS,Russia China South Asia
+Tajikistan,TJK,Russia China South Asia
+Turkmenistan,TKM,Russia China South Asia
+Ukraine,UKR,Russia China South Asia
+Uzbekistan,UZB,Russia China South Asia
+Aruba,ABW,Latin America
+Anguilla,AIA,Latin America
+Argentina,ARG,Latin America
+Antarctica,ATA,Latin America
+Antigua and Barbuda,ATG,Latin America
+"Bonaire, Sint Eustatius and Saba",BES,Latin America
+Bahamas,BHS,Latin America
+Saint Barthelemy,BLM,Latin America
+Belize,BLZ,Latin America
+"Bolivia, Plurinational State of",BOL,Latin America
+Brazil,BRA,Latin America
+Barbados,BRB,Latin America
+Chile,CHL,Latin America
+Colombia,COL,Latin America
+Costa Rica,CRI,Latin America
+Cuba,CUB,Latin America
+Curacao,CUW,Latin America
+Cayman Islands,CYM,Latin America
+Dominica,DMA,Latin America
+Dominican Republic,DOM,Latin America
+Ecuador,ECU,Latin America
+Falkland Islands (Malvinas),FLK,Latin America
+Guadeloupe,GLP,Latin America
+Grenada,GRD,Latin America
+Guatemala,GTM,Latin America
+French Guiana,GUF,Latin America
+Guyana,GUY,Latin America
+Honduras,HND,Latin America
+Haiti,HTI,Latin America
+Jamaica,JAM,Latin America
+Saint Kitts and Nevis,KNA,Latin America
+Saint Lucia,LCA,Latin America
+Saint Martin (French part),MAF,Latin America
+Mexico,MEX,North America
+Montserrat,MSR,Latin America
+Martinique,MTQ,Latin America
+Nicaragua,NIC,Latin America
+Panama,PAN,Latin America
+Peru,PER,Latin America
+Paraguay,PRY,Latin America
+South Georgia and the South Sandwich Islands,SGS,Latin America
+El Salvador,SLV,Latin America
+Suriname,SUR,Latin America
+Sint Maarten (Dutch part),SXM,Latin America
+Turks and Caicos Islands,TCA,Latin America
+Trinidad and Tobago,TTO,Latin America
+Uruguay,URY,Latin America
+Saint Vincent and the Grenadines,VCT,Latin America
+"Venezuela, Bolivarian Republic of",VEN,Latin America
+"Virgin Islands, British",VGB,Latin America
+"Virgin Islands, U.S.",VIR,Latin America
+United Arab Emirates,ARE,Russia China South Asia
+Bahrain,BHR,Russia China South Asia
+Algeria,DZA,Africa
+Egypt,EGY,Africa
+"Iran, Islamic Republic of",IRN,Russia China South Asia
+Iraq,IRQ,Russia China South Asia
+Israel,ISR,Russia China South Asia
+Jordan,JOR,Russia China South Asia
+Kuwait,KWT,Russia China South Asia
+Lebanon,LBN,Russia China South Asia
+Libya,LBY,Africa
+Morocco,MAR,Africa
+Oman,OMN,Russia China South Asia
+"Palestine, State of",PSE,Russia China South Asia
+Qatar,QAT,Russia China South Asia
+Saudi Arabia,SAU,Russia China South Asia
+Syrian Arab Republic,SYR,Russia China South Asia
+Tunisia,TUN,Africa
+Yemen,YEM,Russia China South Asia
+Bermuda,BMU,North America
+Canada,CAN,North America
+Puerto Rico,PRI,North America
+Saint Pierre and Miquelon,SPM,North America
+United States Minor Outlying Islands,UMI,North America
+United States,USA,North America
+American Samoa,ASM,Australia Oceania
+Australia,AUS,Australia Oceania
+Cocos (Keeling) Islands,CCK,Australia Oceania
+Cook Islands,COK,Australia Oceania
+Christmas Island,CXR,Australia Oceania
+Heard Island and McDonald Islands,HMD,Australia Oceania
+Japan,JPN,Australia Oceania
+Norfolk Island,NFK,Australia Oceania
+Niue,NIU,Australia Oceania
+New Zealand,NZL,Australia Oceania
+French Polynesia,PYF,Australia Oceania
+Tokelau,TKL,Australia Oceania
+Brunei Darussalam,BRN,Southeast Asia
+Fiji,FJI,Southeast Asia
+"Micronesia, Federated States of",FSM,Southeast Asia
+Guam,GUM,Southeast Asia
+Indonesia,IDN,Southeast Asia
+Kiribati,KIR,Southeast Asia
+"Korea, Republic of",KOR,Southeast Asia
+Marshall Islands,MHL,Southeast Asia
+Northern Mariana Islands,MNP,Southeast Asia
+Malaysia,MYS,Southeast Asia
+New Caledonia,NCL,Southeast Asia
+Nauru,NRU,Southeast Asia
+Pitcairn,PCN,Southeast Asia
+Philippines,PHL,Southeast Asia
+Palau,PLW,Southeast Asia
+Papua New Guinea,PNG,Southeast Asia
+"Korea, Democratic People's Republic of",PRK,Southeast Asia
+Singapore,SGP,Southeast Asia
+Solomon Islands,SLB,Southeast Asia
+Thailand,THA,Southeast Asia
+Timor-Leste,TLS,Southeast Asia
+Tonga,TON,Southeast Asia
+Tuvalu,TUV,Southeast Asia
+Vanuatu,VUT,Southeast Asia
+Wallis and Futuna,WLF,Southeast Asia
+Samoa,WSM,Southeast Asia
+Afghanistan,AFG,Russia China South Asia
+Bangladesh,BGD,Russia China South Asia
+Bhutan,BTN,Russia China South Asia
+India,IND,Russia China South Asia
+British Indian Ocean Territory,IOT,Russia China South Asia
+Sri Lanka,LKA,Russia China South Asia
+Maldives,MDV,Russia China South Asia
+Myanmar,MMR,Russia China South Asia
+Nepal,NPL,Russia China South Asia
+Pakistan,PAK,Russia China South Asia
+Reunion,REU,Africa

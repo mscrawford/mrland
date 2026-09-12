@@ -8,7 +8,8 @@ checkCurtisTable1 <- function(df) {
   total <- sum(df$treecoverloss_01_15)
   if (abs(total - globalLoss) > 2) {
     stop("ForestLossDrivers: regional tree cover loss sums to ", total, " Mha, but Table 1 of ",
-         "Curtis et al. (2018) reports a global total of ", globalLoss, " Mha. forest_loss.csv is corrupt.")
+         "Curtis et al. (2018) reports a global total of ", globalLoss,
+         " Mha. forest_loss.csv is corrupt.")
   }
 
   offBy <- abs(rowSums(df[drivers]) - 100)
@@ -48,8 +49,10 @@ checkCurtisTable1 <- function(df) {
 #' @importFrom stats complete.cases
 
 readForestLossDrivers <- function() {
-  ## Mapping file
-  mapping <- read.csv("mapping.csv", header = TRUE, sep = ";")
+  ## Mapping file: comma-separated in the package since 0.76.0; a shared source folder may still
+  ## hold the semicolon-separated original
+  sep <- if (grepl(";", readLines("mapping.csv", n = 1))) ";" else ","
+  mapping <- read.csv("mapping.csv", header = TRUE, sep = sep)
 
   ## Magpie standard
   isoCountry <- toolGetMapping(type = "regional", name = "regionmappingH12.csv", where = "madrat")
@@ -63,14 +66,15 @@ readForestLossDrivers <- function() {
   # This is Tree Cover loss in Mha at this stage, all drivers are in percentage
   df <- read.csv(file = file, header = TRUE, sep = ",")
   checkCurtisTable1(df)
-  # Division by 100 because we change from percentage to proportion. Division by 15 to get annual data
+  # percentages to proportions (/ 100), 2001-2015 totals to annual values (/ 15)
   df[, -c(1:3)] <- (df$treecoverloss_01_15 * (df[, -c(1:3)] / 100)) / 15
 
-  dfMag <- as.magpie(df[, -c(2, 3)], temporal = NULL, spatial = "region") ## This is Tree Cover loss in Mha
+  dfMag <- as.magpie(df[, -c(2, 3)], temporal = NULL, spatial = "region") # tree cover loss, Mha
 
   ## FRA Forest Area
   # Convert is set to TRUE For Mha
-  a <- collapseNames(readSource("FRA2020", "forest_area", convert = TRUE)[, , "naturallyRegeneratingForest"])
+  a <- readSource("FRA2020", "forest_area", convert = TRUE)[, , "naturallyRegeneratingForest"]
+  a <- collapseNames(a)
 
   ## Create iso level data based on forest data as weight
   forestLoss <- toolAggregate(x = dfMag, weight = setYears(a[, "y2015", ], NULL), rel = fullMapping,
