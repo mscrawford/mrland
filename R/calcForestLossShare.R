@@ -7,17 +7,18 @@
 #' [calcForestFireLoss()].
 #' @param period Years averaged to give the annual rate, for `source = "GFW"` only.
 #'
-#' @details The numerator is UMD tree cover loss (or, for Curtis, tree cover loss
-#' transcribed from the paper) and the denominator is FRA 2020 naturally regenerating
-#' forest area in 2010. Those two are not the same quantity: tree cover is not forest, and
-#' loss detected in tree cover outside natural forest still lands in the numerator. The
-#' mismatch is inherited from the original parameterisation and is left in place here on
-#' purpose, so that switching the driver source moves the numbers for one reason only.
-#' Changing the denominator is a separate decision.
+#' @details For `source = "GFW"` numerator and denominator come from the same product at the
+#' same canopy threshold: UMD tree cover loss by driver over UMD tree cover extent in 2000,
+#' the base the loss is measured on. For `source = "Curtis"` the denominator stays FRA 2020
+#' naturally regenerating forest area in 2010, reproducing the previous parameterisation
+#' exactly. The `overall` column (FRA fire area) is divided by the same denominator as the
+#' drivers of its source and exceeds 1 in a few savanna countries; GAMS loads it but never reads
+#' it. Shares above 1 are clamped to 1; for a driver column this also warns with the country names.
 #'
 #' @return MAgPIE object with the share of natural forest area lost per year by driver
 #' @author Abhijeet Mishra, Michael Crawford
-#' @importFrom magclass setYears setNames
+#' @importFrom magclass setYears setNames getItems
+#' @importFrom utils head
 #' @importFrom madrat calcOutput readSource
 #' @seealso [calcForestFireLoss()]
 #' @examples
@@ -30,14 +31,29 @@ calcForestLossShare <- function(source = "GFW", period = 2015:2024) {
 
   lostArea <- calcOutput("ForestFireLoss", source = source,  # nolint: undesirable_function_linter.
                          period = period, aggregate = FALSE)
-  forestArea <- setYears(setNames(readSource("FRA2020", subtype = "forest_area",
-                                             convert = TRUE)[, "y2010",
-                                                             "naturallyRegeneratingForest"],
-                                  NULL), NULL)
+
+  forestArea <- switch(
+    source,  # nolint: undesirable_function_linter.
+    "GFW" = readSource("GFWLossByDriver", subtype = "extent", convert = TRUE),
+    "Curtis" = readSource("FRA2020", subtype = "forest_area",
+                          convert = TRUE)[, "y2010", "naturallyRegeneratingForest"],
+    stop("calcForestLossShare: unknown source '", source,  # nolint: undesirable_function_linter.
+         "'. Use \"GFW\" or \"Curtis\".")
+  )
+  forestArea <- setYears(setNames(forestArea, NULL), NULL)
 
   lostShare <- lostArea / forestArea
   lostShare[is.infinite(lostShare)] <- 0
   lostShare[is.na(lostShare)] <- 0
+  # overall (FRA fire area over the driver denominator) exceeds 1 in savanna countries; GAMS
+  # never reads it. A driver share above 1 would mean the numerator and denominator disagree.
+  drivers <- setdiff(getItems(lostShare, 3), "overall")
+  over <- lostShare[, , drivers] > 1
+  if (any(over)) {
+    warning("calcForestLossShare: ", sum(over), " driver share(s) above 1 clamped to 1 (",
+            source, "): ",  # nolint: undesirable_function_linter.
+            toString(utils::head(getItems(lostShare, 1)[apply(over, 1, any)], 5)), ".")
+  }
   lostShare[lostShare > 1] <- 1
 
   return(list(x = lostShare,

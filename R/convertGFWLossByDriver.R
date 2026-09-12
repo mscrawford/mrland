@@ -5,9 +5,10 @@ gfwIsoHosts <- c(XKO = "SRB",  # Kosovo, inside Serbia in madrat's country set
                  ZNC = "CYP",  # Northern Cyprus
                  XAD = "CYP")  # Akrotiri and Dhekelia, the sovereign base areas on Cyprus
 
-# Undocumented GADM placeholders for disputed territories, dropped rather than guessed at:
-# 169 451 ha together, 0.031 per cent of global loss 2001-2025.
-gfwIsoDropped <- c("Z01", "Z06", "Z07")
+# Undocumented GADM placeholders for disputed territories, dropped rather than guessed at. Loss
+# 2001-2025: Z01, Z06 and Z07 carry 169 451 ha together, 0.031 per cent of the global total.
+# Extent 2000: 6.5 Mha over all nine, 0.16 per cent, mostly Z07 and Z01.
+gfwIsoDropped <- sprintf("Z%02d", 1:9)
 
 #' @title convertGFWLossByDriver
 #'
@@ -17,6 +18,8 @@ gfwIsoDropped <- c("Z01", "Z06", "Z07")
 #' not list; both are handled explicitly rather than by a silent inner join.
 #'
 #' @param x magpie object as returned by [readGFWLossByDriver()]
+#' @param subtype `"loss"` or `"extent"`, as passed to the read function; the reconciliation is
+#' the same for both
 #' @return magpie object on madrat's ISO country set, unit Mha
 #' @author Michael Crawford
 #' @importFrom madrat toolCountryFill
@@ -27,7 +30,7 @@ gfwIsoDropped <- c("Z01", "Z06", "Z07")
 #' a <- readSource("GFWLossByDriver", convert = TRUE)
 #' }
 
-convertGFWLossByDriver <- function(x) {
+convertGFWLossByDriver <- function(x, subtype = "loss") {
 
   before <- sum(x)
 

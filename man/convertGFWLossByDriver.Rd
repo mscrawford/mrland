@@ -4,10 +4,13 @@
 \alias{convertGFWLossByDriver}
 \title{convertGFWLossByDriver}
 \usage{
-convertGFWLossByDriver(x)
+convertGFWLossByDriver(x, subtype = "loss")
 }
 \arguments{
 \item{x}{magpie object as returned by [readGFWLossByDriver()]}
+
+\item{subtype}{`"loss"` or `"extent"`, as passed to the read function; the reconciliation is
+the same for both}
 }
 \value{
 magpie object on madrat's ISO country set, unit Mha

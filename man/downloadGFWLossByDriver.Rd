@@ -10,7 +10,8 @@ downloadGFWLossByDriver()
 Downloads tree cover loss by country, year and dominant driver from the
 Global Forest Watch data-api table `gadm__tcl__iso_change`, which cross-tabulates the
 UMD/Hansen annual tree cover loss product with the WRI/Google DeepMind 1 km
-dominant-driver classification of Sims et al. (2025).
+dominant-driver classification of Sims et al. (2025), plus tree cover extent in 2000 at
+the same canopy threshold from `gadm__tcl__iso_summary`, the base the loss is measured on.
 
 Route notes:
 * `/dataset/{d}/{v}/download/csv` is open and honours the full SQL (`GROUP BY` included);

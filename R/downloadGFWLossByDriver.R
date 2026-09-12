@@ -1,5 +1,7 @@
-gfwDataset <- "gadm__tcl__iso_change"
+gfwDataset <- "gadm__tcl__iso_change"          # annual loss by country and driver
 gfwVersion <- "v20260424"
+gfwSummaryDataset <- "gadm__tcl__iso_summary"  # tree cover extent 2000 by country, same threshold
+gfwSummaryVersion <- "v20260424"
 
 # Canopy density in 2000 (per cent) defining forest for the loss figures; 30 is GFW's
 # convention. Not a detail: global loss 2001-2025 is 647 Mha at 0 per cent and 334 at 75.
@@ -12,7 +14,8 @@ gfwCanopyThreshold <- 30
 #' @description Downloads tree cover loss by country, year and dominant driver from the
 #' Global Forest Watch data-api table `gadm__tcl__iso_change`, which cross-tabulates the
 #' UMD/Hansen annual tree cover loss product with the WRI/Google DeepMind 1 km
-#' dominant-driver classification of Sims et al. (2025).
+#' dominant-driver classification of Sims et al. (2025), plus tree cover extent in 2000 at
+#' the same canopy threshold from `gadm__tcl__iso_summary`, the base the loss is measured on.
 #'
 #' Route notes:
 #' * `/dataset/{d}/{v}/download/csv` is open and honours the full SQL (`GROUP BY` included);
@@ -40,8 +43,9 @@ downloadGFWLossByDriver <- function() {
   where <- paste("FROM data WHERE umd_tree_cover_density_2000__threshold =",
                  gfwCanopyThreshold)
 
-  # Two aggregations of the same table; the read side checks that the first sums to the
-  # second, which is what makes a truncated driver file fail rather than pass.
+  # Two aggregations of the loss table (the read side checks that the first sums to the
+  # second, which is what makes a truncated driver file fail rather than pass) and the 2000
+  # extent from the summary table, at the same threshold.
   queries <- list(
     "loss_by_driver.csv" = paste("SELECT", dims,
                                  ", wri_google_tree_cover_loss_drivers__driver AS driver,",
@@ -49,20 +53,26 @@ downloadGFWLossByDriver <- function() {
                                  "GROUP BY iso, year, threshold, driver"),
     "loss_totals.csv" = paste("SELECT", dims,
                               ", SUM(umd_tree_cover_loss__ha) AS loss_ha", where,
-                              "GROUP BY iso, year, threshold")
+                              "GROUP BY iso, year, threshold"),
+    "extent_2000.csv" = paste("SELECT iso, umd_tree_cover_density_2000__threshold AS threshold,",
+                              "SUM(umd_tree_cover_extent_2000__ha) AS extent_ha", where,
+                              "GROUP BY iso, threshold")
   )
+  datasets <- c("loss_by_driver.csv" = paste0(gfwDataset, "/", gfwVersion),
+                "loss_totals.csv" = paste0(gfwDataset, "/", gfwVersion),
+                "extent_2000.csv" = paste0(gfwSummaryDataset, "/", gfwSummaryVersion))
   headers <- c(
     "loss_by_driver.csv" = "\"iso\",\"year\",\"threshold\",\"driver\",\"loss_ha\"",
-    "loss_totals.csv" = "\"iso\",\"year\",\"threshold\",\"loss_ha\""
+    "loss_totals.csv" = "\"iso\",\"year\",\"threshold\",\"loss_ha\"",
+    "extent_2000.csv" = "\"iso\",\"threshold\",\"extent_ha\""
   )
 
   # madrat::downloadSource() runs this under warn = 2: keep it warning-clean.
   local_options(timeout = max(3e6, getOption("timeout")))
 
   for (f in names(queries)) {
-    url <- paste0("https://data-api.globalforestwatch.org/dataset/", gfwDataset, "/",
-                  gfwVersion, "/download/csv?sql=",
-                  URLencode(queries[[f]], reserved = TRUE))
+    url <- paste0("https://data-api.globalforestwatch.org/dataset/", datasets[[f]],
+                  "/download/csv?sql=", URLencode(queries[[f]], reserved = TRUE))
     download.file(url, f, quiet = TRUE, mode = "wb")
 
     # download.file() errors on HTTP 400/500; any other non-CSV body is caught here.
@@ -101,7 +111,9 @@ downloadGFWLossByDriver <- function() {
   description <- paste("Annual UMD/Hansen tree cover loss 2001-2025, in hectares,",
                        "cross-tabulated by country and by the WRI/Google DeepMind 1 km",
                        "dominant-driver class, at a", gfwCanopyThreshold, "per cent canopy",
-                       "density threshold. Eight driver classes are present: the seven of",
+                       "density threshold, plus UMD tree cover extent in 2000 at the same",
+                       "threshold (extent_2000.csv). Eight driver classes are present: the seven",
+                       "of",
                        "Sims et al. (2025) plus 'Unknown'. NOTE: the driver map underlying",
                        "this extract is the annually updated 2001-2025 version",
                        "(wri_google_tree_cover_loss_drivers v1.13), not the 2001-2022",
@@ -130,6 +142,7 @@ downloadGFWLossByDriver <- function() {
               license = "CC BY 4.0",
               version = paste0(gfwDataset, " ", gfwVersion, " (drivers map ",
                                "wri_google_tree_cover_loss_drivers v1.13, 2001-2025)"),
-              unit = "ha of tree cover loss per country, year and driver",
+              unit = paste("ha of tree cover loss per country, year and driver;",
+                           "ha of tree cover extent 2000 per country"),
               reference = reference))
 }

@@ -4,14 +4,19 @@
 \alias{readGFWLossByDriver}
 \title{readGFWLossByDriver}
 \usage{
-readGFWLossByDriver()
+readGFWLossByDriver(subtype = "loss")
+}
+\arguments{
+\item{subtype}{`"loss"` (default) or `"extent"`}
 }
 \value{
-magpie object, ISO country x 2001..2025 x eight driver classes, unit Mha
+magpie object: loss as ISO country x 2001..2025 x eight driver classes; extent as
+ISO country x y2000. Unit Mha.
 }
 \description{
-Reads the GFW tree cover loss by driver extract into a magpie object with
-dimensions country x year x driver, in Mha of tree cover loss per year.
+Reads the GFW extract: tree cover loss by country, year and driver
+(`subtype = "loss"`, default), or tree cover extent in 2000 at the same canopy threshold
+(`subtype = "extent"`), the base the loss is measured on. Both in Mha.
 }
 \details{
 The canopy threshold is pinned in [downloadGFWLossByDriver()] and stamped into

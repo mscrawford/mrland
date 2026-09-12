@@ -80,15 +80,54 @@ checkGFWLossByDriver <- function(df, totals) {
   return(invisible(df))
 }
 
+# Checks on the extent file against the loss file. Loss pixels are a subset of the 2000 extent
+# at the same threshold, so a country's cumulative loss cannot exceed its extent; a mismatched
+# version pair or threshold fails here.
+checkGFWExtent <- function(ext, df) {
+
+  required <- c("iso", "threshold", "extent_ha")
+  if (!all(required %in% names(ext))) {
+    stop("GFWLossByDriver: extent_2000.csv is missing column(s) ",
+         toString(setdiff(required, names(ext))), ".")
+  }
+  if (!identical(sort(unique(ext$threshold)), sort(unique(df$threshold)))) {
+    stop("GFWLossByDriver: extent_2000.csv carries canopy threshold ",
+         toString(unique(ext$threshold)), " but loss_by_driver.csv carries ",
+         toString(unique(df$threshold)), ".")
+  }
+  if (anyNA(ext$extent_ha) || any(ext$extent_ha < 0)) {
+    stop("GFWLossByDriver: extent_ha contains ", sum(is.na(ext$extent_ha)), " missing and ",
+         sum(ext$extent_ha < 0, na.rm = TRUE), " negative values.")
+  }
+  absent <- setdiff(unique(df$iso), ext$iso)
+  if (length(absent) > 0) {
+    stop("GFWLossByDriver: ", length(absent), " countries carry loss but have no extent, e.g. ",
+         toString(utils::head(absent, 5)), ".")
+  }
+  cum <- stats::aggregate(list(loss = df$loss_ha), by = list(iso = df$iso), FUN = sum)
+  both <- merge(cum, ext[, c("iso", "extent_ha")], by = "iso")
+  over <- both$loss > both$extent_ha * (1 + 1e-6)
+  if (any(over)) {
+    stop("GFWLossByDriver: cumulative loss exceeds the 2000 extent for ", sum(over),
+         " countries, e.g. ", toString(utils::head(both$iso[over], 5)),
+         ". The two files are not from the same version or threshold.")
+  }
+
+  return(invisible(ext))
+}
+
 #' @title readGFWLossByDriver
 #'
-#' @description Reads the GFW tree cover loss by driver extract into a magpie object with
-#' dimensions country x year x driver, in Mha of tree cover loss per year.
+#' @description Reads the GFW extract: tree cover loss by country, year and driver
+#' (`subtype = "loss"`, default), or tree cover extent in 2000 at the same canopy threshold
+#' (`subtype = "extent"`), the base the loss is measured on. Both in Mha.
 #'
 #' @details The canopy threshold is pinned in [downloadGFWLossByDriver()] and stamped into
 #' every row; this function only insists that the extract carries exactly one.
 #'
-#' @return magpie object, ISO country x 2001..2025 x eight driver classes, unit Mha
+#' @param subtype `"loss"` (default) or `"extent"`
+#' @return magpie object: loss as ISO country x 2001..2025 x eight driver classes; extent as
+#' ISO country x y2000. Unit Mha.
 #' @author Michael Crawford
 #' @importFrom magclass as.magpie magpiesort
 #' @importFrom utils read.csv head
@@ -98,9 +137,22 @@ checkGFWLossByDriver <- function(df, totals) {
 #' a <- readSource("GFWLossByDriver")
 #' }
 
-readGFWLossByDriver <- function() {
+readGFWLossByDriver <- function(subtype = "loss") {
 
   df <- read.csv("loss_by_driver.csv", stringsAsFactors = FALSE)
+
+  if (subtype == "extent") {
+    ext <- read.csv("extent_2000.csv", stringsAsFactors = FALSE)
+    checkGFWExtent(ext, df)
+    ext$extent <- ext$extent_ha / 1e6 # hectares to Mha
+    ext$year <- 2000L
+    x <- as.magpie(ext[, c("iso", "year", "extent")], spatial = 1, temporal = 2)
+    return(magpiesort(x))
+  }
+  if (subtype != "loss") {
+    stop("readGFWLossByDriver: unknown subtype '", subtype, "'. Use \"loss\" or \"extent\".")
+  }
+
   totals <- read.csv("loss_totals.csv", stringsAsFactors = FALSE)
   checkGFWLossByDriver(df, totals)
 

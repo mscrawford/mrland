@@ -18,6 +18,12 @@ makeTotals <- function(df) {
   t[, c("iso", "year", "threshold", "loss_ha")]
 }
 
+makeExtent <- function(df) {
+  iso <- unique(df$iso)
+  data.frame(iso = iso, threshold = as.integer(gfwCanopyThreshold),  # nolint: object_usage_linter.
+             extent_ha = 2 * sum(df$loss_ha) / length(iso), stringsAsFactors = FALSE)
+}
+
 test_that("the guard passes clean data", {
   df <- makeExtract()
   expect_silent(checkGFWLossByDriver(df, makeTotals(df)))
@@ -85,6 +91,31 @@ test_that("a global total far from the pinned reference is caught", {
 test_that("a missing column is caught", {
   df <- makeExtract()
   expect_error(checkGFWLossByDriver(df[, -3], makeTotals(df)), "missing column")
+})
+
+test_that("a consistent extent file passes", {
+  df <- makeExtract()
+  expect_silent(checkGFWExtent(makeExtent(df), df))
+})
+
+test_that("a country with loss but no extent is caught", {
+  df <- makeExtract()
+  ext <- makeExtent(df)
+  expect_error(checkGFWExtent(ext[ext$iso != "C07", ], df), "no extent")
+})
+
+test_that("cumulative loss above the 2000 extent is caught", {
+  df <- makeExtract()
+  ext <- makeExtent(df)
+  ext$extent_ha[ext$iso == "C07"] <- 1
+  expect_error(checkGFWExtent(ext, df), "exceeds the 2000 extent")
+})
+
+test_that("an extent file at another threshold is caught", {
+  df <- makeExtract()
+  ext <- makeExtent(df)
+  ext$threshold <- 75L
+  expect_error(checkGFWExtent(ext, df), "canopy threshold")
 })
 
 # Benign perturbations: a guard that rejects everything is as useless as one that rejects nothing.
