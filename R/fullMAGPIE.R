@@ -364,6 +364,8 @@ fullMAGPIE <- function(rev = numeric_version("0.1"), dev = "") {
              outputStatistics = stats, file = "f55_manure_fuel_shr.cs4")
   calcOutput("AWMSconfShr",        years = magYears,    round = 4,
              outputStatistics = stats, file = "f55_awms_shr.cs4", rev = rev)
+  calcOutput("AWMSconfShrTargets", years = magYears,    round = 4,
+             outputStatistics = stats, file = "f55_awms_shr_targets.cs4")
   calcOutput("EF3confinement", selection = "recycling", round = 4,
              outputStatistics = stats, file = "f55_awms_recycling_share.cs4")
 
@@ -387,6 +389,10 @@ fullMAGPIE <- function(rev = numeric_version("0.1"), dev = "") {
              round = 4, outputStatistics = stats, file = "f57_maccs_n2o_2022.cs3")
   calcOutput("MACCsCH4", sector = "landuse", source = "PBL_MACC_2022", years = shortYearsFrom2010,
              round = 4, outputStatistics = stats, file = "f57_maccs_ch4_2022.cs3")
+  calcOutput("MACCsN2O", sector = "landuse", source = "PBL_MACC_2022", spline = TRUE, years = shortYearsFrom2010,
+             round = 4, outputStatistics = stats, file = "f57_maccs_n2o_2022_spline.cs3")
+  calcOutput("MACCsCH4", sector = "landuse", source = "PBL_MACC_2022", spline = TRUE, years = shortYearsFrom2010,
+             round = 4, outputStatistics = stats, file = "f57_maccs_ch4_2022_spline.cs3")
 
 
   # 59 som
