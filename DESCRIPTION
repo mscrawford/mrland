@@ -21,7 +21,8 @@ Authors@R: c(
     person("Felicitas", "Beier", role = "aut"),
     person("David", "Hoetten", role = "aut"),
     person("Pascal", "Sauer", role = "aut"),
-    person("Jake", "Tommey", role = "aut")
+    person("Jake", "Tommey", role = "aut"),
+    person("Bin", "Lin", role = "aut")
   )
 Description: The package provides land related data via the madrat
     framework.
@@ -57,6 +58,7 @@ Imports:
     withr,
     zoo
 Suggests:
+    archive,
     covr,
     ggplot2,
     rmarkdown,

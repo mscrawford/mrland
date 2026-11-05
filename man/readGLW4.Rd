@@ -4,31 +4,50 @@
 \alias{readGLW4}
 \title{readGLW4}
 \usage{
-readGLW4(subtype = "Da_Ct")
+readGLW4(subtype = "Da_Ct_2015")
 }
 \arguments{
-\item{subtype}{Weighting method and livestock type:
-\itemize{
-\item {Da}: Dasymetric weighting informed by Random Forest
-\item {Aw}: Areal weighting (distributed uniformly in each census)
-\itemize{
-\item \code{Ch}: Chicken
-\item \code{Ct}: Cattle
-\item \code{Pg}: Pigs
-\item \code{Sh}: Sheep
-\item \code{Gt}: Goats
-\item \code{Ho}: Horse
-\item \code{Dk}: ducks
-\item \code{Bf}: Buffaloes
-}}}
+\item{subtype}{Weighting method, livestock species, and reference year
+(\code{"<method>_<species>_<year>"}):
+     \itemize{
+     \item {Da}: Dasymetric weighting informed by Random Forest
+     \item {Aw}: Areal weighting - 2015 only
+     \itemize{
+     \item \code{Ch}: Chicken
+     \item \code{Ct}: Cattle
+     \item \code{Pg}: Pigs
+     \item \code{Sh}: Sheep
+     \item \code{Gt}: Goats
+     \item \code{Ho}: Horse (2015 only)
+     \item \code{Dk}: Ducks (2015 only)
+     \item \code{Bf}: Buffaloes
+     }}}
 }
 \value{
-A gridded magpie object with gridded livstock of the world
+A magpie object with 67420 lpjcell coordinates and gridded livestock
+  counts in heads per 0.5-degree pixel (aggregated by sum). For 2020 data,
+  native heads/km2 values are multiplied by cell area before aggregation to
+  ensure unit consistency with 2015 data.
 }
 \description{
-reads in Gridded Livestock of the World v4,
-downloaded from: https://dataverse.harvard.edu/dataverse/glw_4
+Reads Gridded Livestock of the World version 4 (GLW 4)
+  raster data for reference years 2015 (Harvard Dataverse) and 2020
+  (FAO GIS Manager). Eight livestock species are available for 2015
+  with dasymetric and areal weighting; six species for 2020 with
+  dasymetric weighting only.
+  Source catalogues:
+  https://dataverse.harvard.edu/dataverse/glw_4
+  https://data.apps.fao.org/catalog/iso/9d1e149b-d63f-4213-978b-317a8eb42d02
+}
+\examples{
+\dontrun{
+readSource("GLW4", subtype = "Da_Ct_2015", convert = FALSE)
+readSource("GLW4", subtype = "Da_Ct_2020", convert = FALSE)
+}
+}
+\seealso{
+\code{\link{readGLW3}}, \code{\link{correctGLW4}}
 }
 \author{
-David M Chen
+David M Chen, Bin Lin
 }
